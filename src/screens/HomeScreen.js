@@ -1,19 +1,21 @@
 import React from 'react'
 import { View, StyleSheet, Button, Text, TouchableOpacity, Image } from 'react-native'
 // import { useFonts, Inter_900Black } from '@expo-google-fonts/inter'
+import Logo from '../components/Logo'
 
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.viewStyle}>
-      <Image style={styles.logoStyle} source={require('../../assets/gyt_logo.png')} />
+      <Logo />
       <TouchableOpacity
         style={styles.buttonContainerStyle}
-        onPress={() => navigation.navigate('Login')}
+        onPress={() => navigation.navigate('Login', { userType: 'customer' })}
       >
         <Text style={styles.textStyle}>I AM A CUSTOMER</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={{ ...styles.buttonContainerStyle, ...styles.buttonContainerCourierStyle }}
+        onPress={() => navigation.navigate('Login', { userType: 'courier' })}
       >
         <Text style={styles.textStyle}>I AM A COURIER</Text>
       </TouchableOpacity>
@@ -32,15 +34,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  logoStyle: {
-    width: 200,
-    height: 200,
-    borderRadius: 100,
-    marginBottom: 40,
-    borderColor: 'rgb(255,165,0)',
-    borderWidth: 6,
-    padding: 2,
   },
   buttonContainerStyle: {
     marginTop: 20,
