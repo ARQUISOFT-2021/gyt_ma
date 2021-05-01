@@ -2,11 +2,14 @@ import React from 'react'
 import { View, StyleSheet, Button, Text, TouchableOpacity, Image } from 'react-native'
 // import { useFonts, Inter_900Black } from '@expo-google-fonts/inter'
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.viewStyle}>
       <Image style={styles.logoStyle} source={require('../../assets/gyt_logo.png')} />
-      <TouchableOpacity style={styles.buttonContainerStyle}>
+      <TouchableOpacity
+        style={styles.buttonContainerStyle}
+        onPress={() => navigation.navigate('Login')}
+      >
         <Text style={styles.textStyle}>I AM A CUSTOMER</Text>
       </TouchableOpacity>
       <TouchableOpacity
