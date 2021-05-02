@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from 'react'
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Touchable } from 'react-native'
+import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 import Logo from '../components/Logo'
 
 const reducer = (state, action) => {
@@ -34,11 +34,15 @@ const LoginScreen = ({ navigation }) => {
       />
       <Text style={styles.label}>password</Text>
       <TextInput
+        // secureTextEntry={true}
         style={styles.input}
         value={password}
         onChangeText={password => dispatch({ type: 'password', payload: password })}
       />
-      <TouchableOpacity style={styles.buttonContainerStyle} onPress={() => console.log('pressed')}>
+      <TouchableOpacity
+        style={styles.buttonContainerStyle}
+        onPress={() => navigation.navigate('Options', { userType: 'customer' })}
+      >
         <Text style={styles.loginButton}>Login</Text>
       </TouchableOpacity>
     </View>
