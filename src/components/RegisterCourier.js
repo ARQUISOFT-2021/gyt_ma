@@ -6,7 +6,7 @@ const reducer = (state, action) => {
     case 'username':
       return { ...state, username: action.payload }
     case 'name':
-      return { ...state, first_name: action.payload }
+      return { ...state, name: action.payload }
     case 'email':
       return { ...state, email: action.payload }
     case 'phone':
