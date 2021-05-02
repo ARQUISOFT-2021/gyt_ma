@@ -38,7 +38,9 @@ const LoginScreen = ({ navigation }) => {
         value={password}
         onChangeText={password => dispatch({ type: 'password', payload: password })}
       />
-      <TouchableOpacity style={styles.buttonContainerStyle} onPress={() => console.log('pressed')}>
+      <TouchableOpacity
+        style={styles.buttonContainerStyle}
+        onPress={() => navigation.navigate('Customer', { userType: 'customer' , username: username})}>
         <Text style={styles.loginButton}>Login</Text>
       </TouchableOpacity>
     </View>
