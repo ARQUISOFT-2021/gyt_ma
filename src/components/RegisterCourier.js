@@ -67,7 +67,7 @@ const RegisterCourier = ({ navigation }) => {
       />
       <TouchableOpacity
         style={styles.buttonContainerStyle}
-        onPress={() => navigation.navigate('Options', { userType: 'customer' })}
+        onPress={() => navigation.navigate('Options', { userType: 'courier' })}
       >
         <Text style={styles.loginButton}>REGISTER</Text>
       </TouchableOpacity>
