@@ -51,12 +51,12 @@ const CustomerProfileScreen = ({ navigation }) => {
 
 			<View style={styles.spacing}/>
 
-			<TouchableOpacity
+			{/* <TouchableOpacity
 				style={styles.buttonContainerStyle}
 				onPress={() => console.log("EditButton")}
 			>
 				<Text style={styles.textStyle}>EDIT</Text>
-			</TouchableOpacity>
+			</TouchableOpacity> */}
 
 		</View>
 		</ScrollView>

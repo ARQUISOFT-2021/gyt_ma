@@ -24,14 +24,14 @@ const CustomerScreen = ({ navigation }) => {
 		
 		<TouchableOpacity
 			style={{ ...styles.buttonContainerStyle, ...styles.buttonContainerCourierStyle }}
-			onPress={() => console.log("MyParcels")}
+			onPress={() => navigation.navigate('CustomerParcels', { userType: 'customer' , username: username})}
 		>
 			<Text style={styles.textStyle}>MY PARCELS</Text>
 		</TouchableOpacity>
 
 		<TouchableOpacity
 			style={{ ...styles.buttonContainerStyle, ...styles.buttonContainerRegisterStyle }}
-      onPress={() => console.log("TrackParcels")}
+      onPress={() => navigation.navigate('CustomerTrack', { userType: 'customer' , username: username})}
 		>
 			<Text style={styles.textStyle}>TRACK PARCELS</Text>
 		</TouchableOpacity>
