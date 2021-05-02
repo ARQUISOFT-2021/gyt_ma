@@ -4,6 +4,7 @@ import HomeScreen from './src/screens/HomeScreen'
 import LoginScreen from './src/screens/LoginScreen'
 import OptionsScreen from './src/screens/OptionsScreen'
 import InfoScreen from './src/screens/InfoScreen'
+import RegisterScreen from './src/screens/RegisterScreen'
 
 const navigator = createStackNavigator(
   {
@@ -11,6 +12,7 @@ const navigator = createStackNavigator(
     Login: LoginScreen,
     Options: OptionsScreen,
     Info: InfoScreen,
+    Register: RegisterScreen,
   },
   {
     initialRouteName: 'Home',

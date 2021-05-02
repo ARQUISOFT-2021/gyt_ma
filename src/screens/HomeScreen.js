@@ -21,6 +21,7 @@ const HomeScreen = ({ navigation }) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={{ ...styles.buttonContainerStyle, ...styles.buttonContainerRegisterStyle }}
+        onPress={() => navigation.navigate('Register')}
       >
         <Text style={styles.textStyle}>REGISTER</Text>
       </TouchableOpacity>
