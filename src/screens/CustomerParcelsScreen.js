@@ -1,9 +1,48 @@
 import React from 'react'
 import { useState } from 'react'
-import { View, StyleSheet, SafeAreaView, ScrollView, StatusBar, Button, Text, TouchableOpacity, Image } from 'react-native'
+import { View, StyleSheet, SafeAreaView, ScrollView, StatusBar, Button, Text, TouchableOpacity, Image, FlatList } from 'react-native'
 import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
 import RoundLogo from '../components/RoundLogo'
 
+
+const widthArray = [70, 200, 100, 100, 100, 100, 100, 100, 100]
+
+const DATAHeaders = [
+	'ID',
+	'Nombre',
+	'ID del Remitente',
+	'ID del Receptor',
+	'Peso',
+	'Largo',
+	'Ancho',
+	'Altura',
+	'¿Es Frágil?'
+]
+
+const DATA = [
+  [
+		"1",
+		"Awesome Rubber Mouse",
+		"61",
+		"71",
+		"9.08",
+		"0.80",
+		"0.94",
+		"0.81",
+		"true"
+	],
+  [
+		"2",
+		"Sleek Soft Shirt",
+		"7",
+		"25",
+		"9.30",
+		"0.92",
+		"0.33",
+		"0.93",
+		"false"
+	],
+];
 
 
 const CustomerParcelsScreen = ({ navigation }) => {
@@ -11,17 +50,19 @@ const CustomerParcelsScreen = ({ navigation }) => {
 	const userType = navigation.state.params.userType
 	return (
 		<SafeAreaView style={styles.container}>
-			<ScrollView style={styles.scrollView}>
-			<View style={styles.viewStyle}>
+			<ScrollView horizontal={true} style={styles.scrollView}>
+			<View style={styles.container}>
 
 				<Text style={styles.titleStyle}>MY PARCELS</Text>
 
 				<View style={{flexDirection: 'row', alignItems: 'center'}}>
 					<View style={{margin:20, flex: 0.6, height: 3, backgroundColor: '#eee'}} />
 				</View>
-				
-				<Text style={styles.fieldTextStyle}>Tabla de Parcels</Text>
-				<Text style={styles.fieldStyle}>TABLA</Text>
+
+				<Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
+					<Row data={DATAHeaders} widthArr={widthArray} style={styles.tableHeader} textStyle={styles.tableText}/>
+					<Rows data={DATA} style={styles.tableBody} widthArr={widthArray} textStyle={styles.tableText}/>
+				</Table>
 
 			</View>
 			</ScrollView>
@@ -32,13 +73,14 @@ const CustomerParcelsScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
 	container: {
     flex: 1,
+		padding: 16,
+		paddingTop: 30,
+		backgroundColor: '#fff',
 		// justifyContent: 'center',
-		// alignItems:'center',
-		backgroundColor: 'white',
+		alignItems:'center',
   },
   scrollView: {
 		height: '10%',
-		// width: '100%',
     backgroundColor: 'white',
   },
   viewStyle: {
@@ -53,11 +95,17 @@ const styles = StyleSheet.create({
 	containerT: {
 		flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff'
 	},
-  head: {
-		height: 40, backgroundColor: '#f1f8ff'
+  tableHeader: {
+		height: 80,
+		backgroundColor: '#f1f8ff',
 	},
-  text: {
-		margin: 6
+	tableBody: {
+		height: 40,
+		backgroundColor: '#fff',
+	},
+  tableText: {
+		margin: 10,
+		textAlign: 'center'
 	},
   buttonContainerStyle: {
     marginTop: 20,

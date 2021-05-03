@@ -3,6 +3,18 @@ import { useState } from 'react'
 import { View, StyleSheet, SafeAreaView, ScrollView, StatusBar, Button, Text, TouchableOpacity, Image } from 'react-native'
 import RoundLogo from '../components/RoundLogo'
 
+const userData = [
+	'1',
+	"laisha_bergstrom",
+	"Laisha",
+	"Bergstrom",
+	"laisha_bergstrom@gmail.com",
+	"3674425022",
+	"4.9988, -70.4411",
+	"2.8154, -71.2631",
+	"laisha_bergstrom@gmail.com"
+]
+
 
 const CustomerProfileScreen = ({ navigation }) => {
 	const username = navigation.state.params.username
@@ -21,32 +33,32 @@ const CustomerProfileScreen = ({ navigation }) => {
 				<View style={{margin:20, flex: 0.6, height: 3, backgroundColor: '#eee'}} />
 			</View>
 			
-			<Text style={styles.fieldTextStyle}>Nombre</Text>
+			<Text style={styles.fieldTextStyle}>{userData[2]}</Text>
 			<Text style={styles.fieldStyle}>First Name</Text>
 
 			<View style={styles.spacing}/>
 
-			<Text style={styles.fieldTextStyle}>Apellido</Text>
+			<Text style={styles.fieldTextStyle}>{userData[3]}</Text>
 			<Text style={styles.fieldStyle}>Last Name</Text>
 
 			<View style={styles.spacing}/>
 
-			<Text style={styles.fieldTextStyle}>correo@web.com</Text>
+			<Text style={styles.fieldTextStyle}>{userData[4]}</Text>
 			<Text style={styles.fieldStyle}>Email</Text>
 
 			<View style={styles.spacing}/>
 
-			<Text style={styles.fieldTextStyle}>3001234567</Text>
+			<Text style={styles.fieldTextStyle}>{userData[5]}</Text>
 			<Text style={styles.fieldStyle}>Phone</Text>
 
 			<View style={styles.spacing}/>
 
-			<Text style={styles.fieldTextStyle}>4.1234, -10.4321</Text>
+			<Text style={styles.fieldTextStyle}>{userData[6]}</Text>
 			<Text style={styles.fieldStyle}>Home Address</Text>
 
 			<View style={styles.spacing}/>
 
-			<Text style={styles.fieldTextStyle}>4.1234, -10.4321</Text>
+			<Text style={styles.fieldTextStyle}>{userData[7]}</Text>
 			<Text style={styles.fieldStyle}>Work Address</Text>
 
 			<View style={styles.spacing}/>
