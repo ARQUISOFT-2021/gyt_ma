@@ -1,5 +1,6 @@
 import React, { useEffect, useReducer } from 'react'
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Touchable } from 'react-native'
+import axios from 'axios'
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Touchable, Alert } from 'react-native'
 import Logo from '../components/Logo'
 
 const reducer = (state, action) => {
@@ -13,15 +14,31 @@ const reducer = (state, action) => {
   }
 }
 
+const privateIp = '192.168.0.9'
+
 const LoginScreen = ({ navigation }) => {
   console.log(navigation.state.params.userType)
+  const { userType } = navigation.state.params
 
   const [state, dispatch] = useReducer(reducer, { username: '', password: '' })
   const { username, password } = state
 
-  useEffect(() => {
-    // console.log(state)
-  }, [state])
+  // useEffect(() => {
+  //   // console.log(state)
+  //   console.log(state)
+  // }, [state])
+
+  const handleOnPress = async () => {
+    try {
+      const response = await axios.post(`http://${privateIp}:2020/${userType}s/login`, state)
+      console.log('LOGIN SUCCESSFUL')
+      console.log(response.data)
+
+      navigation.navigate('Customer', { userType, id: response.data.id })
+    } catch (error) {
+      Alert.alert('Invalid Credentials')
+    }
+  }
 
   return (
     <View style={styles.viewStyle}>
@@ -38,9 +55,7 @@ const LoginScreen = ({ navigation }) => {
         value={password}
         onChangeText={password => dispatch({ type: 'password', payload: password })}
       />
-      <TouchableOpacity
-        style={styles.buttonContainerStyle}
-        onPress={() => navigation.navigate('Customer', { userType: 'customer' , username: username})}>
+      <TouchableOpacity style={styles.buttonContainerStyle} onPress={() => handleOnPress()}>
         <Text style={styles.loginButton}>Login</Text>
       </TouchableOpacity>
     </View>

@@ -3,40 +3,38 @@ import { useState } from 'react'
 import { View, StyleSheet, Button, Text, TouchableOpacity, Image } from 'react-native'
 import RoundLogo from '../components/RoundLogo'
 
-
 const CustomerScreen = ({ navigation }) => {
-	const username = navigation.state.params.username
-	const userType = navigation.state.params.userType
-	return (
-	<View style={styles.viewStyle}>
+  const { userType, id } = navigation.state.params
+  return (
+    <View style={styles.viewStyle}>
+      {/* <Text style={styles.titleStyle}>{username}</Text>
+      <Text style={styles.userTypeStyle}>{userType}</Text> */}
 
-		<Text style={styles.titleStyle}>{username}</Text>
-		<Text style={styles.userTypeStyle}>{userType}</Text>
-		
-		<RoundLogo/>
+      <RoundLogo />
 
-		<TouchableOpacity
-			style={styles.buttonContainerStyle}
-			onPress={() => navigation.navigate('CustomerProfile', { userType: 'customer' , username: username})}
-		>
-			<Text style={styles.textStyle}>PROFILE</Text>
-		</TouchableOpacity>
-		
-		<TouchableOpacity
-			style={{ ...styles.buttonContainerStyle, ...styles.buttonContainerCourierStyle }}
-			onPress={() => navigation.navigate('CustomerParcels', { userType: 'customer' , username: username})}
-		>
-			<Text style={styles.textStyle}>MY PARCELS</Text>
-		</TouchableOpacity>
+      <TouchableOpacity
+        style={styles.buttonContainerStyle}
+        onPress={() => navigation.navigate('CustomerProfile', { userType, id })}
+      >
+        <Text style={styles.textStyle}>PROFILE</Text>
+      </TouchableOpacity>
 
-		<TouchableOpacity
-			style={{ ...styles.buttonContainerStyle, ...styles.buttonContainerRegisterStyle }}
-      onPress={() => navigation.navigate('CustomerTrack', { userType: 'customer' , username: username})}
-		>
-			<Text style={styles.textStyle}>TRACK PARCELS</Text>
-		</TouchableOpacity>
-
-	</View>
+      <TouchableOpacity
+        style={{ ...styles.buttonContainerStyle, ...styles.buttonContainerCourierStyle }}
+        onPress={() => navigation.navigate('CustomerParcels', { userType, id })}
+      >
+        <Text style={styles.textStyle}>MY PARCELS</Text>
+      </TouchableOpacity>
+      {/* 
+      <TouchableOpacity
+        style={{ ...styles.buttonContainerStyle, ...styles.buttonContainerRegisterStyle }}
+        onPress={() =>
+          navigation.navigate('CustomerTrack', { userType: 'customer', username: username })
+        }
+      >
+        <Text style={styles.textStyle}>TRACK PARCELS</Text>
+      </TouchableOpacity> */}
+    </View>
   )
 }
 

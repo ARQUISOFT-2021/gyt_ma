@@ -1,112 +1,133 @@
 import React from 'react'
-import { useState } from 'react'
-import { View, StyleSheet, SafeAreaView, ScrollView, StatusBar, Button, Text, TouchableOpacity, Image, FlatList } from 'react-native'
-import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import {
+  View,
+  StyleSheet,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  Button,
+  Text,
+  TouchableOpacity,
+  Image,
+  FlatList,
+} from 'react-native'
+import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component'
 import RoundLogo from '../components/RoundLogo'
-
 
 const widthArray = [70, 200, 100, 100, 100, 100, 100, 100, 100]
 
 const DATAHeaders = [
-	'ID',
-	'Nombre',
-	'ID del Remitente',
-	'ID del Receptor',
-	'Peso',
-	'Largo',
-	'Ancho',
-	'Altura',
-	'¿Es Frágil?'
+  'ID',
+  'Nombre',
+  'ID del Remitente',
+  'ID del Receptor',
+  'Peso',
+  'Largo',
+  'Ancho',
+  'Altura',
+  '¿Es Frágil?',
 ]
 
-const DATA = [
-  [
-		"1",
-		"Awesome Rubber Mouse",
-		"61",
-		"71",
-		"9.08",
-		"0.80",
-		"0.94",
-		"0.81",
-		"true"
-	],
-  [
-		"2",
-		"Sleek Soft Shirt",
-		"7",
-		"25",
-		"9.30",
-		"0.92",
-		"0.33",
-		"0.93",
-		"false"
-	],
-];
+// let DATA = [
+//   ['1', 'Awesome Rubber Mouse', '61', '71', '9.08', '0.80', '0.94', '0.81', 'true'],
+//   ['2', 'Sleek Soft Shirt', '7', '25', '9.30', '0.92', '0.33', '0.93', 'false'],
+// ]
 
+const privateIp = '192.168.0.9'
 
 const CustomerParcelsScreen = ({ navigation }) => {
-	const username = navigation.state.params.username
-	const userType = navigation.state.params.userType
-	return (
-		<SafeAreaView style={styles.container}>
-			<ScrollView horizontal={true} style={styles.scrollView}>
-			<View style={styles.container}>
+  const { userType, id } = navigation.state.params
+  const [userParcels, setUserParcels] = useState([])
 
-				<Text style={styles.titleStyle}>MY PARCELS</Text>
+  useEffect(() => {
+    const getParcels = async () => {
+      const { data } = await axios.get(`http://${privateIp}:2020/parcels/${userType}s/${id}`)
+      setUserParcels(data.parcels)
+      // console.log(data.parcels)
+    }
 
-				<View style={{flexDirection: 'row', alignItems: 'center'}}>
-					<View style={{margin:20, flex: 0.6, height: 3, backgroundColor: '#eee'}} />
-				</View>
+    getParcels()
+  }, [])
 
-				<Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
-					<Row data={DATAHeaders} widthArr={widthArray} style={styles.tableHeader} textStyle={styles.tableText}/>
-					<Rows data={DATA} style={styles.tableBody} widthArr={widthArray} textStyle={styles.tableText}/>
-				</Table>
+  const DATA = userParcels.map(parcel => {
+    const parcelArray = Object.values(parcel)
+    return parcelArray
+  })
 
-			</View>
-			</ScrollView>
-		</SafeAreaView>
+  console.log(DATA)
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <ScrollView horizontal={true} style={styles.scrollView}>
+        <View style={styles.container}>
+          <Text style={styles.titleStyle}>MY PARCELS</Text>
+
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <View style={{ margin: 20, flex: 0.6, height: 3, backgroundColor: '#eee' }} />
+          </View>
+
+          <Table borderStyle={{ borderWidth: 2, borderColor: '#c8e1ff' }}>
+            <Row
+              data={DATAHeaders}
+              widthArr={widthArray}
+              style={styles.tableHeader}
+              textStyle={styles.tableText}
+            />
+            <Rows
+              data={DATA}
+              style={styles.tableBody}
+              widthArr={widthArray}
+              textStyle={styles.tableText}
+            />
+          </Table>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
-	container: {
+  container: {
     flex: 1,
-		padding: 16,
-		paddingTop: 30,
-		backgroundColor: '#fff',
-		// justifyContent: 'center',
-		alignItems:'center',
+    padding: 16,
+    paddingTop: 30,
+    backgroundColor: '#fff',
+    // justifyContent: 'center',
+    alignItems: 'center',
   },
   scrollView: {
-		height: '10%',
+    height: '10%',
     backgroundColor: 'white',
   },
   viewStyle: {
     justifyContent: 'center',
-    alignItems:'center',
-		marginTop: 20,
-		marginBottom: 30,
+    alignItems: 'center',
+    marginTop: 20,
+    marginBottom: 30,
   },
-	spacing: {
-		marginTop: 20,
-	},
-	containerT: {
-		flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff'
-	},
+  spacing: {
+    marginTop: 20,
+  },
+  containerT: {
+    flex: 1,
+    padding: 16,
+    paddingTop: 30,
+    backgroundColor: '#fff',
+  },
   tableHeader: {
-		height: 80,
-		backgroundColor: '#f1f8ff',
-	},
-	tableBody: {
-		height: 40,
-		backgroundColor: '#fff',
-	},
+    height: 80,
+    backgroundColor: '#f1f8ff',
+  },
+  tableBody: {
+    height: 40,
+    backgroundColor: '#fff',
+  },
   tableText: {
-		margin: 10,
-		textAlign: 'center'
-	},
+    margin: 10,
+    textAlign: 'center',
+  },
   buttonContainerStyle: {
     marginTop: 20,
     width: 200,
@@ -125,7 +146,7 @@ const styles = StyleSheet.create({
   titleStyle: {
     fontSize: 30,
     marginTop: 10,
-		marginVertical: -10,
+    marginVertical: -10,
     color: 'black',
     fontWeight: 'bold',
   },
@@ -136,12 +157,12 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     textTransform: 'uppercase',
   },
-	fieldTextStyle: {
+  fieldTextStyle: {
     fontSize: 20,
     marginVertical: 10,
     color: 'black',
   },
-	fieldStyle: {
+  fieldStyle: {
     fontSize: 15,
     marginVertical: -10,
     color: '#888',
