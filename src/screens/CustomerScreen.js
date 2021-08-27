@@ -5,6 +5,7 @@ import RoundLogo from '../components/RoundLogo'
 
 const CustomerScreen = ({ navigation }) => {
   const { userType, id } = navigation.state.params
+  console.log('FROM CUSTOMER SCREEN', navigation.state.params)
   return (
     <View style={styles.viewStyle}>
       {/* <Text style={styles.titleStyle}>{username}</Text>

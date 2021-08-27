@@ -45,9 +45,17 @@ const CustomerProfileScreen = ({ navigation }) => {
 
   useEffect(() => {
     const getUserInfo = async () => {
-      const { data } = await axios.get(`http://${privateIp}:2020/${userType}s/${id}`)
-      // console.log(data)
-      setUserInfo(data.customer)
+      try {
+        console.log(navigation.state.params)
+        const { data } = await axios.get(`http://${privateIp}:2020/${userType}s/${id}`)
+        // console.log(data)
+        console.log('FROM PROFILE PROFILE ....')
+        console.log(data.data.customer)
+        // return undefined
+        setUserInfo(data.data.customer)
+      } catch (error) {
+        console.log('ERRRORRRRR')
+      }
     }
     getUserInfo()
   }, [])

@@ -41,10 +41,15 @@ const CustomerParcelsScreen = ({ navigation }) => {
   const { userType, id } = navigation.state.params
   const [userParcels, setUserParcels] = useState([])
 
+  console.log('FROM PARCELS SCREEN', navigation.state.params)
+
   useEffect(() => {
     const getParcels = async () => {
       const { data } = await axios.get(`http://${privateIp}:2020/parcels/${userType}s/${id}`)
-      setUserParcels(data.parcels)
+
+      console.log(data.data)
+      // return null
+      setUserParcels(data.data.parcels)
       // console.log(data.parcels)
     }
 

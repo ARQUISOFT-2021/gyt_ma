@@ -27,15 +27,18 @@ const LoginScreen = ({ navigation }) => {
   //   // console.log(state)
   //   console.log(state)
   // }, [state])
+  // console.log(local)
 
   const handleOnPress = async () => {
     try {
       const response = await axios.post(`http://${privateIp}:2020/${userType}s/login`, state)
       console.log('LOGIN SUCCESSFUL')
-      console.log(response.data)
-
-      navigation.navigate('Customer', { userType, id: response.data.id })
+      console.log(response.data.data.customer._id)
+      console.log('USER TYPE', userType)
+      // return undefined
+      navigation.navigate('Customer', { userType, id: response.data.data.customer._id })
     } catch (error) {
+      // console.log('POR ACA')
       Alert.alert('Invalid Credentials')
     }
   }
