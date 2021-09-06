@@ -21,9 +21,17 @@ const HomeScreen = ({ navigation }) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={{ ...styles.buttonContainerStyle, ...styles.buttonContainerRegisterStyle }}
+        onPress={() => navigation.navigate('Register')}
       >
         <Text style={styles.textStyle}>REGISTER</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={{ ...styles.buttonContainerStyle, ...styles.buttonContainerNotificationStyle }}
+        onPress={() => navigation.navigate('Notifications')}
+      >
+        <Text style={styles.textStyle}>Notifications</Text>
+      </TouchableOpacity>
+      
     </View>
   )
 }
@@ -56,6 +64,10 @@ const styles = StyleSheet.create({
   buttonContainerRegisterStyle: {
     backgroundColor: 'rgb(220,20,60)',
   },
+  buttonContainerNotificationStyle: {
+    backgroundColor: 'rgb(20,20,60)',
+  },
+  
 })
 
 export default HomeScreen

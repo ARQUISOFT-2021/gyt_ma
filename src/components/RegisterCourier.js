@@ -1,13 +1,16 @@
 import React, { useEffect, useReducer } from 'react'
-import axios from 'axios'
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Touchable, Alert } from 'react-native'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
-import Logo from '../components/Logo'
 
 const reducer = (state, action) => {
   switch (action.type) {
     case 'username':
       return { ...state, username: action.payload }
+    case 'name':
+      return { ...state, name: action.payload }
+    case 'email':
+      return { ...state, email: action.payload }
+    case 'phone':
+      return { ...state, phone: action.payload }
     case 'password':
       return { ...state, password: action.payload }
     default:
@@ -15,56 +18,58 @@ const reducer = (state, action) => {
   }
 }
 
-const privateIp = '192.168.0.9'
+const RegisterCourier = ({ navigation }) => {
+  const [state, dispatch] = useReducer(reducer, {
+    username: '',
+    name: '',
+    email: '',
+    phone: '',
+    password: '',
+  })
+  const { username, name, email, phone, password } = state
 
-const LoginScreen = ({ navigation }) => {
-  console.log(navigation.state.params.userType)
-  const { userType } = navigation.state.params
-
-  const [state, dispatch] = useReducer(reducer, { username: '', password: '' })
-  const { username, password } = state
-
-  // useEffect(() => {
-  //   // console.log(state)
-  //   console.log(state)
-  // }, [state])
-  // console.log(local)
-
-  const handleOnPress = async () => {
-    try {
-      const response = await axios.post(`http://${privateIp}:2020/${userType}s/login`, state)
-      console.log('LOGIN SUCCESSFUL')
-      console.log(response.data.data.customer._id)
-      console.log('USER TYPE', userType)
-      // return undefined
-      navigation.navigate('Customer', { userType, id: response.data.data.customer._id })
-    } catch (error) {
-      // console.log('POR ACA')
-      Alert.alert('Invalid Credentials')
-    }
-  }
+  useEffect(() => {
+    // console.log(state)
+  }, [state])
 
   return (
     <View style={styles.viewStyle}>
-      <Logo />
-      <Text style={styles.label}>username</Text>
+      <Text style={styles.label}>Name</Text>
+      <TextInput
+        style={styles.input}
+        value={name}
+        onChangeText={name => dispatch({ type: 'name', payload: name })}
+      />
+      <Text style={styles.label}>Username</Text>
       <TextInput
         style={styles.input}
         value={username}
         onChangeText={username => dispatch({ type: 'username', payload: username })}
       />
-      <Text style={styles.label}>password</Text>
+      <Text style={styles.label}>Email</Text>
       <TextInput
+        style={styles.input}
+        value={email}
+        onChangeText={email => dispatch({ type: 'email', payload: email })}
+      />
+      <Text style={styles.label}>Phone</Text>
+      <TextInput
+        style={styles.input}
+        value={phone}
+        onChangeText={phone => dispatch({ type: 'phone', payload: phone })}
+      />
+      <Text style={styles.label}>Password</Text>
+      <TextInput
+        // secureTextEntry={true}
         style={styles.input}
         value={password}
         onChangeText={password => dispatch({ type: 'password', payload: password })}
       />
-      <TouchableOpacity style={styles.buttonContainerStyle} onPress={() => handleOnPress()}>
       <TouchableOpacity
         style={styles.buttonContainerStyle}
-        onPress={() => navigation.navigate('Options', { userType: 'customer' })}
+        onPress={() => navigation.navigate('Options', { userType: 'courier' })}
       >
-        <Text style={styles.loginButton}>Login</Text>
+        <Text style={styles.loginButton}>REGISTER</Text>
       </TouchableOpacity>
     </View>
   )
@@ -72,7 +77,7 @@ const LoginScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   viewStyle: {
-    height: '100%',
+    height: '90%',
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
@@ -105,4 +110,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default LoginScreen
+export default RegisterCourier
