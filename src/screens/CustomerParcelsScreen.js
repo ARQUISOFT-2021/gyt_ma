@@ -35,7 +35,7 @@ const DATAHeaders = [
 //   ['2', 'Sleek Soft Shirt', '7', '25', '9.30', '0.92', '0.33', '0.93', 'false'],
 // ]
 
-const privateIp = '192.168.0.9'
+const privateIp = '34.71.49.191'
 
 const CustomerParcelsScreen = ({ navigation }) => {
   const { userType, id } = navigation.state.params
@@ -45,7 +45,7 @@ const CustomerParcelsScreen = ({ navigation }) => {
 
   useEffect(() => {
     const getParcels = async () => {
-      const { data } = await axios.get(`http://${privateIp}:2020/parcels/${userType}s/${id}`)
+      const { data } = await axios.get(`http://${privateIp}:80/parcels/${userType}s/${id}`)
 
       console.log(data.data)
       // return null

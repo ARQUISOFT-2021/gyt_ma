@@ -34,7 +34,7 @@ import RoundLogo from '../components/RoundLogo'
 //         "home_address": "4.5028, -72.6169",
 //         "work_address": "4.0119, -74.3427",
 //         "password": "freda_kassulke@gmail.com"
-const privateIp = '192.168.0.9'
+const privateIp = '34.71.49.191'
 
 const CustomerProfileScreen = ({ navigation }) => {
   const { userType, id } = navigation.state.params
@@ -47,7 +47,7 @@ const CustomerProfileScreen = ({ navigation }) => {
     const getUserInfo = async () => {
       try {
         console.log(navigation.state.params)
-        const { data } = await axios.get(`http://${privateIp}:2020/${userType}s/${id}`)
+        const { data } = await axios.get(`http://${privateIp}:80/${userType}s/${id}`)
         // console.log(data)
         console.log('FROM PROFILE PROFILE ....')
         console.log(data.data.customer)

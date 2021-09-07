@@ -7,12 +7,9 @@ const CustomerScreen = ({ navigation }) => {
   const { userType, id } = navigation.state.params
   console.log('FROM CUSTOMER SCREEN', navigation.state.params)
   return (
+
     <View style={styles.viewStyle}>
-      {/* <Text style={styles.titleStyle}>{username}</Text>
-      <Text style={styles.userTypeStyle}>{userType}</Text> */}
-
-      <RoundLogo />
-
+      <RoundLogo/>
       <TouchableOpacity
         style={styles.buttonContainerStyle}
         onPress={() => navigation.navigate('CustomerProfile', { userType, id })}
@@ -26,15 +23,6 @@ const CustomerScreen = ({ navigation }) => {
       >
         <Text style={styles.textStyle}>MY PARCELS</Text>
       </TouchableOpacity>
-      {/* 
-      <TouchableOpacity
-        style={{ ...styles.buttonContainerStyle, ...styles.buttonContainerRegisterStyle }}
-        onPress={() =>
-          navigation.navigate('CustomerTrack', { userType: 'customer', username: username })
-        }
-      >
-        <Text style={styles.textStyle}>TRACK PARCELS</Text>
-      </TouchableOpacity> */}
     </View>
   )
 }

@@ -1,7 +1,6 @@
 import React, { useEffect, useReducer } from 'react'
 import axios from 'axios'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Touchable, Alert } from 'react-native'
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 import Logo from '../components/Logo'
 
 const reducer = (state, action) => {
@@ -15,7 +14,7 @@ const reducer = (state, action) => {
   }
 }
 
-const privateIp = '192.168.0.9'
+const privateIp = '34.71.49.191'
 
 const LoginScreen = ({ navigation }) => {
   console.log(navigation.state.params.userType)
@@ -32,7 +31,7 @@ const LoginScreen = ({ navigation }) => {
 
   const handleOnPress = async () => {
     try {
-      const response = await axios.post(`http://${privateIp}:2020/${userType}s/login`, state)
+      const response = await axios.post(`http://${privateIp}:80/${userType}s/login`, state)
       console.log('LOGIN SUCCESSFUL')
       console.log(response.data.data.customer._id)
       console.log('USER TYPE', userType)
@@ -60,10 +59,6 @@ const LoginScreen = ({ navigation }) => {
         onChangeText={password => dispatch({ type: 'password', payload: password })}
       />
       <TouchableOpacity style={styles.buttonContainerStyle} onPress={() => handleOnPress()}>
-      <TouchableOpacity
-        style={styles.buttonContainerStyle}
-        onPress={() => navigation.navigate('Options', { userType: 'customer' })}
-      >
         <Text style={styles.loginButton}>Login</Text>
       </TouchableOpacity>
     </View>

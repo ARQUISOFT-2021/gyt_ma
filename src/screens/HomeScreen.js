@@ -20,12 +20,6 @@ const HomeScreen = ({ navigation }) => {
         <Text style={styles.textStyle}>I AM A COURIER</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={{ ...styles.buttonContainerStyle, ...styles.buttonContainerRegisterStyle }}
-        onPress={() => navigation.navigate('Register')}
-      >
-        <Text style={styles.textStyle}>REGISTER</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
         style={{ ...styles.buttonContainerStyle, ...styles.buttonContainerNotificationStyle }}
         onPress={() => navigation.navigate('Notifications')}
       >
